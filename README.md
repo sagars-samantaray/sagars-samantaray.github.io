@@ -24,7 +24,6 @@
 
 ---
 
-## `> whoami`
 
 <img align="right" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="340" />
 
@@ -56,7 +55,6 @@ const sagar = {
 
 ---
 
-## `> tech --list`
 
 <div align="center">
 
@@ -86,7 +84,6 @@ const sagar = {
 
 ---
 
-## `> git log --stat`
 
 <div align="center">
 
@@ -107,7 +104,6 @@ const sagar = {
 
 ---
 
-## `> snake --watch contributions`
 
 <div align="center">
   <picture>
@@ -116,8 +112,6 @@ const sagar = {
     <img alt="Snake animation" src="https://raw.githubusercontent.com/sagars-samantaray/sagars-samantaray/output/github-snake-dark.svg"/>
   </picture>
 </div>
-
-> 💡 **To activate the snake:** Create `.github/workflows/snake.yml` inside your `sagars-samantaray/sagars-samantaray` repo with the workflow below, push it, then manually trigger it once from the **Actions** tab.
 
 <details>
 <summary><code>📄 .github/workflows/snake.yml — click to expand</code></summary>
@@ -157,7 +151,6 @@ jobs:
 
 ---
 
-## `> trophy --display`
 
 <div align="center">
 <img src="https://github-profile-trophy.vercel.app/?username=sagars-samantaray&theme=matrix&no-frame=true&no-bg=true&margin-w=8&column=7" />
@@ -165,7 +158,6 @@ jobs:
 
 ---
 
-## `> ssh connect@sagar`
 
 <div align="center">
 

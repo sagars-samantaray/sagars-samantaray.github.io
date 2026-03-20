@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sagar Samantaray</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="index.js" defer></script>
+</head>
+<body>
+
+<canvas id="canvas-particles"></canvas>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<div id="scroll-mouse">
+  <div class="smouse-track">
+    <div class="smouse-line"></div>
+    <div class="smouse-body" id="smouse-body"><div class="smouse-dot"></div></div>
+  </div>
+</div>
+
+<div id="mobile-menu">
+  <button id="close-menu-btn" onclick="closeMenu()" aria-label="Close Menu" style="position:absolute;top:24px;right:24px;background:none;border:none;font-size:2rem;color:var(--dim);z-index:201;cursor:pointer;">
+    &#10005;
+  </button>
+  <a href="#hero"    onclick="closeMenu()">Home</a>
+  <a href="#about"   onclick="closeMenu()">About</a>
+  <a href="#skills"  onclick="closeMenu()">Skills</a>
+  <a href="#resume"  onclick="closeMenu()">Resume</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<div id="content">
+
+<nav>
+  <div class="logo"><div class="logo-dot"></div>Sagar</div>
+  <ul class="nav-pills">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status"><div class="nav-status-dot"></div>Available for hire</div>
+  <button id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="hero">
+  <div class="hero-ghost-txt">DEV</div>
+  <div class="hero-tag"><div class="hero-tag-line"></div>Full-Stack Engineer · Bhubaneswar, India</div>
+  <h1 class="hero-h1">
+    <span class="ghost">SAGAR</span><br/>
+    <span class="solid">SAMAN</span><span class="hi">TARAY</span>
+  </h1>
+  <p class="hero-desc">
+    <span id="typewriter"></span><span class="type-cursor">|</span>
+  </p>
+  <div class="hero-btns">
+    <a href="#about" class="btn-c mag"><span>Explore Work →</span></a>
+    <a href="mailto:sagars.samantaray@gmail.com" class="btn-o mag">Get in Touch</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+    <span class="hero-scroll-txt">Scroll to explore</span>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<section id="about">
+  <div class="rv">
+    <div class="sec-num">01</div>
+    <h2 class="sec-h">Crafting the <em>web</em><br/>one line at a time.</h2>
+    <p class="about-p">
+      Full Stack Developer with <b>2 years</b> of experience building and deploying production-grade web applications. Expertise in <b>Node.js, React.js, MySQL, MongoDB</b> and <b>AWS cloud</b>.<br/><br/>
+      Built backend systems for international event platforms handling concurrent users at scale. When the terminal closes, fully locked in a game.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">2<sup>+</sup></div><div class="stat-l">Years Exp</div></div>
+      <div class="stat"><div class="stat-n">MCA</div><div class="stat-l">8.6 GPA</div></div>
+      <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Curiosity</div></div>
+    </div>
+  </div>
+  <div class="code-card rv d2">
+    <div class="code-bar">
+      <div class="cd cd1"></div><div class="cd cd2"></div><div class="cd cd3"></div>
+      <span class="code-file">sagar.config.js</span>
+    </div>
+    <div class="code-inner">
+      <div class="code-line-bar"><span class="code-line-fill"></span></div>
+      <span class="ln cc">// developer.init()</span>
+      <span class="ln">&nbsp;</span>
+      <span class="ln"><span class="ck">const</span> <span class="cv">dev</span> <span class="cp">=</span> {</span>
+      <span class="ln i1"><span class="cv">name</span><span class="cp">:</span>     <span class="cs">"Sagar Samantaray"</span>,</span>
+      <span class="ln i1"><span class="cv">role</span><span class="cp">:</span>     <span class="cs">"Software Developer | Full Stack"</span>,</span>
+      <span class="ln i1"><span class="cv">location</span><span class="cp">:</span> <span class="cs">"Bhubaneswar, Odisha 🇮🇳"</span>,</span>
+      <span class="ln">&nbsp;</span>
+      <span class="ln i1"><span class="cv">stack</span><span class="cp">:</span>    [<span class="cs">"React"</span>, <span class="cs">"Node.js"</span>, <span class="cs">"MySQL"</span>, <span class="cs">"AWS"</span>],</span>
+      <span class="ln i1"><span class="cv">current</span><span class="cp">:</span>  <span class="cs">"NetSquare, Bangalore"</span>,</span>
+      <span class="ln">&nbsp;</span>
+      <span class="ln i1"><span class="cv">status</span><span class="cp">:</span>   <span class="cs">"Building TRADEPASS 🚀"</span>,</span>
+      <span class="ln i1"><span class="cv">openTo</span><span class="cp">:</span>   <span class="cs">"New opportunities ✅"</span>,</span>
+      <span class="ln i1"><span class="cv">offline</span><span class="cp">:</span>  <span class="cs">"Hardcore gaming 🎮"</span>,</span>
+      <span class="ln">};</span>
+      <span class="ln">&nbsp;</span>
+      <span class="ln cc">// export default dev;</span>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<section id="skills">
+  <div class="skills-top rv">
+    <span class="sec-tag">Arsenal</span>
+    <h2 class="skills-h">Tech I <span>Work With</span></h2>
+  </div>
+  <div class="marquee-wrap rv d1">
+    <div class="marquee-track">
+      <div class="pill"><img src="https://skillicons.dev/icons?i=js&theme=dark"/><span class="pill-name">JavaScript</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=ts&theme=dark"/><span class="pill-name">TypeScript</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=react&theme=dark"/><span class="pill-name">React.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=nodejs&theme=dark"/><span class="pill-name">Node.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=express&theme=dark"/><span class="pill-name">Express.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=mongodb&theme=dark"/><span class="pill-name">MongoDB</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=mysql&theme=dark"/><span class="pill-name">MySQL</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=redux&theme=dark"/><span class="pill-name">Redux</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=tailwind&theme=dark"/><span class="pill-name">Tailwind</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=aws&theme=dark"/><span class="pill-name">AWS</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=linux&theme=dark"/><span class="pill-name">Linux</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=git&theme=dark"/><span class="pill-name">Git</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=js&theme=dark"/><span class="pill-name">JavaScript</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=ts&theme=dark"/><span class="pill-name">TypeScript</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=react&theme=dark"/><span class="pill-name">React.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=nodejs&theme=dark"/><span class="pill-name">Node.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=express&theme=dark"/><span class="pill-name">Express.js</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=mongodb&theme=dark"/><span class="pill-name">MongoDB</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=mysql&theme=dark"/><span class="pill-name">MySQL</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=redux&theme=dark"/><span class="pill-name">Redux</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=tailwind&theme=dark"/><span class="pill-name">Tailwind</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=aws&theme=dark"/><span class="pill-name">AWS</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=linux&theme=dark"/><span class="pill-name">Linux</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=git&theme=dark"/><span class="pill-name">Git</span></div>
+    </div>
+  </div>
+  <div class="marquee-wrap rv d2">
+    <div class="marquee-track rev">
+      <div class="pill"><img src="https://skillicons.dev/icons?i=html&theme=dark"/><span class="pill-name">HTML5</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=css&theme=dark"/><span class="pill-name">CSS3</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=react&theme=dark"/><span class="pill-name">React Native</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=github&theme=dark"/><span class="pill-name">GitHub</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=postman&theme=dark"/><span class="pill-name">Postman</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=vscode&theme=dark"/><span class="pill-name">VS Code</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=figma&theme=dark"/><span class="pill-name">Figma</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=nginx&theme=dark"/><span class="pill-name">Nginx</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=html&theme=dark"/><span class="pill-name">HTML5</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=css&theme=dark"/><span class="pill-name">CSS3</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=react&theme=dark"/><span class="pill-name">React Native</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=github&theme=dark"/><span class="pill-name">GitHub</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=postman&theme=dark"/><span class="pill-name">Postman</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=vscode&theme=dark"/><span class="pill-name">VS Code</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=figma&theme=dark"/><span class="pill-name">Figma</span></div>
+      <div class="pill"><img src="https://skillicons.dev/icons?i=nginx&theme=dark"/><span class="pill-name">Nginx</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<section id="resume">
+  <div class="rv">
+    <span class="sec-tag">My Journey</span>
+    <h2 class="sec-h">Experience &amp;<br/><em>Education</em></h2>
+  </div>
+  <div class="resume-grid">
+    <div class="rv d1">
+      <div class="resume-col-title">Experience</div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">Apr 2025 — Present</div>
+        <div class="resume-item-title">Software Developer</div>
+        <div class="resume-item-sub">NetSquare · Bangalore, Karnataka</div>
+        <div class="resume-item-desc">Building TRADEPASS — a production SaaS event management platform. HubSpot CRM integration, AWS SQS async badge &amp; certificate generation, real-time dashboards with Pusher.js, QR attendance tracking and SQL-optimised reporting. Deployed on AWS EC2 with PM2.</div>
+      </div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">Oct 2024 — Mar 2025</div>
+        <div class="resume-item-title">React.js Developer</div>
+        <div class="resume-item-sub">VichaarLab · Bhubaneswar, Odisha</div>
+        <div class="resume-item-desc">Built BARENYAM e-commerce platform — product search, multi-filter, pagination, code splitting &amp; lazy loading. Delivered order history, wishlist and address management features with Redux Toolkit.</div>
+      </div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">Jul 2023 — Mar 2024</div>
+        <div class="resume-item-title">Junior Technical Programmer</div>
+        <div class="resume-item-sub">Hyscaler · Bhubaneswar, Odisha</div>
+        <div class="resume-item-desc">Canvas-based annotation system with 15+ drawing tools for GMI TEXAS construction blueprints. Cross-platform component shared between React web &amp; React Native mobile. Document management with version control &amp; workflow automation.</div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="resume-col-title">Education</div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">2021 — 2023 · GPA 8.6 / 10</div>
+        <div class="resume-item-title">Master of Computer Applications</div>
+        <div class="resume-item-sub">NIIS Institute of Business Administration · Bhubaneswar</div>
+        <div class="resume-item-desc">Focused on software engineering, full-stack development and cloud technologies. Built multiple production-grade projects during coursework.</div>
+      </div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">2018 — 2021 · GPA 8.7 / 10</div>
+        <div class="resume-item-title">Bachelor of Science — Chemistry</div>
+        <div class="resume-item-sub">Godavarish Degree College · Banpur, Odisha</div>
+        <div class="resume-item-desc">Strong analytical foundation. Transitioned into software development through self-study and MCA programme.</div>
+      </div>
+      <div class="resume-item">
+        <div class="dot"></div>
+        <div class="resume-year">Languages</div>
+        <div class="resume-item-title">English · Odia · Hindi</div>
+        <div class="resume-item-sub">Fluent across all three</div>
+        <div class="resume-item-desc">Comfortable working in English-first international teams and local environments alike.</div>
+      </div>
+      <a href="https://drive.google.com/file/d/1XJZ553L5R80ugTr8Ho_FsKPcU2UBb2cQ/view" download="Sagar_samantaray_resume.pdf" class="resume-download mag rv d3">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Resume</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<section id="contact">
+  <p class="contact-pre rv">Ready to build something great?</p>
+  <h2 class="contact-h rv d1">
+    <span class="ghost">LET'S</span>
+    <span class="glow">CONNECT.</span>
+  </h2>
+  <div class="socials rv d2">
+    <a href="https://linkedin.com/in/sagar-samantaray" class="soc mag" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      <span>LinkedIn</span>
+    </a>
+    <a href="mailto:sagars.samantaray@gmail.com" class="soc mag">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Gmail</span>
+    </a>
+    <a href="https://github.com/sagars-samantaray" class="soc mag" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <span>GitHub</span>
+    </a>
+    <a href="https://twitter.com/sagar________" class="soc mag" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>Twitter</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-l">Sagar Samantaray <span>·</span> 2025</div>
+  <div class="footer-r">Built with passion & caffeine ☕</div>
+</footer>
+
+</div>
+
+
+</body>
+</html>
