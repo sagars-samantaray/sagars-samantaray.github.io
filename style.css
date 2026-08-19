@@ -1907,11 +1907,10 @@ footer {
     padding: 16px 22px 8px;
     font-size: 12.5px;
     line-height: 1.75;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-.term-body::-webkit-scrollbar { width: 4px; }
-.term-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.term-body::-webkit-scrollbar { display: none; }
 
 /* line types */
 .term-line { display: block; }
@@ -1986,4 +1985,4 @@ footer {
 #copy-toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
-}
+}
