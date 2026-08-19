@@ -1615,9 +1615,22 @@ footer {
     }
 
     #terminal-overlay {
-        width: 96vw;
-        height: 88vh;
-        top: 50%;
+        top: 5vh;
+        left: 2vw;
+        right: 2vw;
+        bottom: 5vh;
+        width: auto;
+        height: auto;
+        transform: scale(.94);
+    }
+
+    #terminal-overlay.open {
+        transform: scale(1);
+    }
+
+    #terminal-backdrop {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .term-body {
@@ -1893,6 +1906,10 @@ footer {
 
 /* line types */
 .term-line { display: block; }
+.term-ascii {
+    line-height: 1.15;
+    white-space: pre;
+}
 .tc-cmd  { color: var(--cyan); }
 .tc-out  { color: var(--text); }
 .tc-dim  { color: var(--dim); }
