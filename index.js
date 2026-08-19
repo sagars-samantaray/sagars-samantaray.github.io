@@ -61,12 +61,12 @@ animLoop();
 (function(){
   const el=document.getElementById('typewriter');
   const lines=[
-    'Building fast,scalable web & mobile experiences.',
-    'Node.js  ·  React.js  ·  MySQL  ·  AWS Cloud',
-    'Full Stack Developer with 2+ year of experience.',
+    'Building fast, scalable web & mobile experiences.',
+    'React.js  ·  Node.js  ·  React Native  ·  AWS Cloud',
+    'MERN Stack Developer with 2.5+ years of experience.',
     'Clean code. Great UX. Ships on time.',
     'Open to new opportunities worldwide.',
-    'Deploying scalable solutions.',
+    'Shipped apps to App Store & Play Store.',
   ];
   let li=0,ci=0,deleting=false;
   const typeSpeed=48,deleteSpeed=24,pauseEnd=1600,pauseStart=300;
