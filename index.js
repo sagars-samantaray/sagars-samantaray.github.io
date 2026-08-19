@@ -9,6 +9,11 @@
   });
 
   const _w = () => {
+    // Disable devtools check on mobile (so keyboard doesn't trigger blur)
+    if (window.innerWidth <= 768) {
+      document.body.style.filter = '';
+      return;
+    }
     if (window.outerWidth - window.innerWidth > 180 ||
         window.outerHeight - window.innerHeight > 180) {
       document.body.style.filter = 'blur(20px)';
@@ -213,7 +218,7 @@ function copyEmail() {
   const termInput= document.getElementById('term-input');
   const closeBtn = document.getElementById('term-close');
   const openBtn  = document.getElementById('terminal-btn');
-  let cmdHistory = [], histIdx = -1, booted = false;
+  let cmdHistory = [], histIdx = -1, booted = false, isTyping = false;
 
   const CMDS = {
     help: () => [
@@ -311,10 +316,17 @@ function copyEmail() {
       '',
       '<span class="tc-dim">Want to talk? Type <span class="tc-cmd">contact</span> or <span class="tc-cmd">hire</span>.</span>'
     ],
-    clear: () => { termBody.innerHTML = ''; return null; },
+    clear: () => { 
+      Array.from(termBody.children).forEach(c => {
+        if (c.id !== 'term-input-row') termBody.removeChild(c);
+      });
+      return null; 
+    },
     exit:  () => { closeTerm(); return null; },
     close: () => { closeTerm(); return null; },
   };
+
+  const termInputRow = document.getElementById('term-input-row');
 
   function print(lines) {
     if (!lines) return;
@@ -322,7 +334,7 @@ function copyEmail() {
       const d = document.createElement('div');
       d.className = 'term-line';
       d.innerHTML = l;
-      termBody.appendChild(d);
+      termBody.insertBefore(d, termInputRow);
     });
     termBody.scrollTop = termBody.scrollHeight;
   }
@@ -332,13 +344,13 @@ function copyEmail() {
     d.className = 'term-line';
     if (!html || !html.trim()) {
       d.innerHTML = html || '';
-      termBody.appendChild(d);
+      termBody.insertBefore(d, termInputRow);
       termBody.scrollTop = termBody.scrollHeight;
       if (done) done();
       return;
     }
     d.innerHTML = html;
-    termBody.appendChild(d);
+    termBody.insertBefore(d, termInputRow);
 
     const walker = document.createTreeWalker(d, NodeFilter.SHOW_TEXT);
     const textNodes = [];
@@ -374,11 +386,11 @@ function copyEmail() {
 
   function printTyped(lines, done) {
     if (!lines || !lines.length) { if (done) done(); return; }
-    termInput.disabled = true;
+    isTyping = true;
     let i = 0;
     function nextLine() {
       if (i >= lines.length) {
-        termInput.disabled = false;
+        isTyping = false;
         termInput.focus();
         if (done) done();
         return;
@@ -471,6 +483,8 @@ function copyEmail() {
   }
 
   termInput.addEventListener('keydown', e => {
+    if (isTyping) { e.preventDefault(); return; }
+    
     if (e.key === 'Enter') {
       const cmd = termInput.value.trim().toLowerCase();
       termInput.value = '';

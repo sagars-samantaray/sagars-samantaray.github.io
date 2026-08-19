@@ -1648,7 +1648,7 @@ footer {
     }
 
     .term-input-row {
-        padding: 8px 14px 10px;
+        padding: 0;
     }
 
     .term-prompt,
@@ -1930,8 +1930,9 @@ footer {
 .term-input-row {
     display: flex;
     align-items: center;
-    padding: 10px 22px 12px;
-    border-top: 1px solid rgba(255,255,255,.05);
+    padding: 0;
+    margin-top: 4px;
+    border-top: none;
     gap: 8px;
     flex-shrink: 0;
 }
@@ -1952,6 +1953,12 @@ footer {
     caret-color: var(--cyan);
     user-select: text;
     -webkit-user-select: text;
+}
+#term-input::-webkit-search-decoration,
+#term-input::-webkit-search-cancel-button,
+#term-input::-webkit-search-results-button,
+#term-input::-webkit-search-results-decoration {
+  display: none;
 }
 
 /* ══════════════════════════════════════
