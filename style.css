@@ -232,6 +232,9 @@ nav {
 }
 
 .nav-pills {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     gap: 0;
     list-style: none;
@@ -257,6 +260,12 @@ nav {
 .nav-pills a:hover {
     color: #fff;
     background: rgba(0, 229, 255, .06)
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .nav-status {
