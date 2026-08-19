@@ -1,3 +1,33 @@
+/* © 2026 Sagar Samantaray. All rights reserved.
+   Unauthorized copying, reproduction, or distribution
+   of this source code is strictly prohibited. */
+
+/* ── Anti-Copy Protection ── */
+(function(){
+  // Disable right-click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Block Ctrl+U (view source), Ctrl+S (save), Ctrl+A (select all),
+  // F12, Ctrl+Shift+I/J/C (devtools)
+  document.addEventListener('keydown', e => {
+    const key = e.key.toLowerCase();
+    if (e.ctrlKey && ['u','s','a'].includes(key)) { e.preventDefault(); return; }
+    if (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(key)) { e.preventDefault(); return; }
+    if (e.key === 'F12') { e.preventDefault(); return; }
+  });
+
+  // DevTools open detection (size-based)
+  const _w = () => {
+    if (window.outerWidth - window.innerWidth > 180 ||
+        window.outerHeight - window.innerHeight > 180) {
+      document.body.style.filter = 'blur(20px)';
+    } else {
+      document.body.style.filter = '';
+    }
+  };
+  window.addEventListener('resize', _w);
+  _w();
+})();
 
 /* ── Cursor ── */
 const cur=document.getElementById('cur');
@@ -161,3 +191,270 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
   updateFills();
 })();
+
+/* ── Scroll Progress Bar ── */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  progressBar.style.width = Math.min(pct * 100, 100) + '%';
+}, { passive: true });
+
+/* ── Copy Email ── */
+function copyEmail() {
+  navigator.clipboard.writeText('sagars.samantaray@gmail.com').then(() => {
+    const toast = document.getElementById('copy-toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  });
+}
+
+/* ── Terminal Mode ── */
+(function () {
+  const overlay  = document.getElementById('terminal-overlay');
+  const backdrop = document.getElementById('terminal-backdrop');
+  const termBody = document.getElementById('term-body');
+  const termInput= document.getElementById('term-input');
+  const closeBtn = document.getElementById('term-close');
+  const openBtn  = document.getElementById('terminal-btn');
+  let cmdHistory = [], histIdx = -1, booted = false;
+
+  const CMDS = {
+    help: () => [
+      '<span class="tc-ok">┌─ Commands ──────────────────────────────┐</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">whoami</span>      <span class="tc-dim">About me</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">skills</span>      <span class="tc-dim">Tech stack</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">experience</span>  <span class="tc-dim">Work history</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">projects</span>    <span class="tc-dim">My projects with live links</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">contact</span>     <span class="tc-dim">Contact info</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">clear</span>       <span class="tc-dim">Clear the screen</span>',
+      '<span class="tc-ok">│</span>  <span class="tc-cmd">exit</span>        <span class="tc-dim">Close terminal</span>',
+      '<span class="tc-ok">└─────────────────────────────────────────┘</span>',
+      '<span class="tc-dim">Tip: ↑ ↓ for history  ·  Ctrl+\` to toggle  ·  Esc to close</span>',
+    ],
+    whoami: () => [
+      '<span class="tc-cmd">Sagar Samantaray</span>',
+      '<span class="tc-out">MERN Stack Developer · Bhubaneswar, India 🇮🇳</span>',
+      '<span class="tc-out">2.5+ years building full-stack web & cross-platform mobile apps.</span>',
+      '<span class="tc-dim">Currently  → <span class="tc-cmd">NetSquare, Bangalore</span></span>',
+      '<span class="tc-dim">Working on → <span class="tc-cmd">TRADEPASS</span> &amp; <span class="tc-ok">STATIS</span></span>',
+      '<span class="tc-out">Education  → MCA · NIIS Institute · GPA 8.6</span>',
+      '<span class="tc-ok">Status     → Open to new opportunities ✅</span>',
+    ],
+    skills: () => [
+      '<span class="tc-ok">Tech Stack:</span>',
+      '',
+      '<span class="tc-dim">Frontend  </span><span class="tc-out">React.js · React Native · Redux · Tailwind CSS</span>',
+      '<span class="tc-dim">Backend   </span><span class="tc-out">Node.js · Express.js · REST APIs · WebSocket</span>',
+      '<span class="tc-dim">Database  </span><span class="tc-out">MongoDB · MySQL · Sequelize ORM</span>',
+      '<span class="tc-dim">Cloud     </span><span class="tc-out">AWS (EC2 · SQS · S3) · PM2 · Linux</span>',
+      '<span class="tc-dim">Mobile    </span><span class="tc-out">App Store &amp; Play Store Deployment</span>',
+      '<span class="tc-dim">Languages </span><span class="tc-out">JavaScript (ES6+) · TypeScript</span>',
+      '<span class="tc-dim">Tools     </span><span class="tc-out">Git · GitHub · Postman · VS Code · Agile</span>',
+    ],
+    experience: () => [
+      '<span class="tc-ok">Work History:</span>',
+      '',
+      '<span class="tc-cmd">Software Developer</span>  <span class="tc-dim">@ NetSquare, Bangalore</span>',
+      '<span class="tc-dim">Oct 2024 — Present</span>',
+      '  <span class="tc-out">→ TRADEPASS — Event Management SaaS Platform</span>',
+      '  <span class="tc-out">→ STATIS   — Foreign National Compliance Platform</span>',
+      '',
+      '<span class="tc-cmd">Junior Technical Programmer</span>  <span class="tc-dim">@ Hyscaler, Bhubaneswar</span>',
+      '<span class="tc-dim">Jul 2023 — Mar 2024</span>',
+      '  <span class="tc-out">→ GMI TEXAS — Construction Management Platform</span>',
+    ],
+    projects: () => [
+      '<span class="tc-ok">Projects:</span>',
+      '',
+      '<span class="tc-cmd">TRADEPASS</span>  <span class="tc-dim">— Event Management SaaS</span>',
+      '<span class="tc-out">Node.js · React.js · React Native · MySQL · AWS SQS</span>',
+      '<span class="tc-dim">↗ <a href="https://apps.apple.com/us/app/tradepass/id6752904218" target="_blank" style="color:var(--dim);text-decoration:underline;">App Store</a>  ↗ <a href="https://play.google.com/store/apps/details?id=com.tradepass.app" target="_blank" style="color:var(--dim);text-decoration:underline;">Play Store</a></span>',
+      '',
+      '<span class="tc-ok">STATIS</span>  <span class="tc-dim">— Foreign National Compliance</span>',
+      '<span class="tc-out">Node.js · React.js · React Native · MongoDB</span>',
+      '<span class="tc-dim">↗ <a href="https://statissoftware.com/" target="_blank" style="color:var(--dim);text-decoration:underline;">statissoftware.com</a></span>',
+      '',
+      '<span class="tc-gold">GMI TEXAS</span>  <span class="tc-dim">— Construction Management</span>',
+      '<span class="tc-out">React.js · Node.js · React Native · Canvas API · WebSocket</span>',
+    ],
+    contact: () => [
+      '<span class="tc-ok">Contact:</span>',
+      '',
+      '<span class="tc-dim">Email    </span><span class="tc-out">sagars.samantaray@gmail.com</span>',
+      '<span class="tc-dim">Phone    </span><span class="tc-out">+91 7205222672</span>',
+      '<span class="tc-dim">LinkedIn </span><a href="https://linkedin.com/in/sagar-samantaray" target="_blank" style="color:var(--cyan);text-decoration:underline;">linkedin.com/in/sagar-samantaray</a>',
+      '<span class="tc-dim">GitHub   </span><a href="https://github.com/sagars-samantaray" target="_blank" style="color:var(--cyan);text-decoration:underline;">github.com/sagars-samantaray</a>',
+    ],
+    // ── Greetings & fun replies ──
+    hi:      () => ['<span class="tc-ok">Hey there! 👋</span>', '<span class="tc-dim">Type <span class="tc-cmd">help</span> to explore.</span>'],
+    hello:   () => ['<span class="tc-ok">Hello! 😄 Welcome to my terminal.</span>', '<span class="tc-dim">Type <span class="tc-cmd">whoami</span> to know more about me.</span>'],
+    hey:     () => ['<span class="tc-ok">Hey! 🙌 What\'s up?</span>', '<span class="tc-dim">Try <span class="tc-cmd">projects</span> to see what I\'ve built.</span>'],
+    heyy:    () => ['<span class="tc-ok">Heyyyy! 😄 Double y energy detected.</span>'],
+    helo:    () => ['<span class="tc-ok">Hello to you too! (nice typo btw 😄)</span>'],
+    sup:     () => ['<span class="tc-ok">Not much, just shipping code. 🚀</span>', '<span class="tc-dim">You?</span>'],
+    yo:      () => ['<span class="tc-ok">Yo! 🤙</span>', '<span class="tc-dim">Type <span class="tc-cmd">contact</span> to reach me.</span>'],
+    thanks:  () => ['<span class="tc-ok">You\'re welcome! 😊</span>'],
+    'thank you': () => ['<span class="tc-ok">Anytime! Happy to connect. 😊</span>'],
+    ty:      () => ['<span class="tc-ok">np! 😄</span>'],
+    bye:     () => ['<span class="tc-ok">Goodbye! 👋 Come back anytime.</span>', '<span class="tc-dim">(type <span class="tc-cmd">exit</span> to close the terminal)</span>'],
+    lol:     () => ['<span class="tc-ok">😄😄😄</span>'],
+    ok:      () => ['<span class="tc-ok">👍</span>'],
+    okay:    () => ['<span class="tc-ok">Alright! 👌</span>'],
+    nice:    () => ['<span class="tc-ok">Thanks! Built with ❤️ and caffeine ☕</span>'],
+    cool:    () => ['<span class="tc-ok">Thanks, I think so too 😎</span>'],
+    hire:    () => ['<span class="tc-ok">Great choice! 🎯</span>', '<span class="tc-out">Reach me at sagars.samantaray@gmail.com</span>', '<span class="tc-out">or call +91 7205222672</span>'],
+    // ── Utility ──
+    clear: () => { termBody.innerHTML = ''; return null; },
+    exit:  () => { closeTerm(); return null; },
+    close: () => { closeTerm(); return null; },
+  };
+
+  function print(lines) {
+    if (!lines) return;
+    lines.forEach(l => {
+      const d = document.createElement('div');
+      d.className = 'term-line';
+      d.innerHTML = l;
+      termBody.appendChild(d);
+    });
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  function openTerm() {
+    overlay.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => termInput.focus(), 60);
+    if (!booted) {
+      booted = true;
+      print([
+        '<span class="tc-ok"> ██████╗  █████╗  ██████╗  █████╗ ██████╗ </span>',
+        '<span class="tc-ok"> ██╔════╝ ██╔══██╗██╔════╝ ██╔══██╗██╔══██╗</span>',
+        '<span class="tc-ok"> ╚█████╗  ███████║██║  ███╗███████║██████╔╝</span>',
+        '<span class="tc-ok">  ╚═══██╗ ██╔══██║██║   ██║██╔══██║██╔══██╗</span>',
+        '<span class="tc-ok"> ██████╔╝ ██║  ██║╚██████╔╝██║  ██║██║  ██║</span>',
+        '<span class="tc-ok"> ╚═════╝  ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝</span>',
+        '',
+        '<span class="tc-dim">Portfolio Terminal v1.0  ·  Type <span class="tc-cmd">help</span> to get started</span>',
+        '',
+      ]);
+    }
+  }
+
+  function closeTerm() {
+    overlay.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Natural Language Resolver ──
+  const NLP = [
+    // About / whoami
+    { keys: ['who are you','who r u','who is sagar','about sagar','about you','about yourself',
+              'tell me about','introduce yourself','introduce you','describe yourself',
+              'your background','what is your background','ur background',
+              'tell me more','know about you','know more','your story',
+              'who built this','who made this'], cmd: 'whoami' },
+
+    // Skills
+    { keys: ['your skills','what skills','what can you do','what do you know',
+              'tech stack','technologies','what tech','programming languages',
+              'what languages','your tech','what tools','tools you use',
+              'what frameworks','your expertise','expertise','your abilities',
+              'what are you good at','good at','proficient in','what do you use',
+              'stack you use','your stack'], cmd: 'skills' },
+
+    // Experience
+    { keys: ['work experience','where have you worked','your experience',
+              'work history','previous jobs','where did you work','employment',
+              'job history','past work','past experience','where you worked',
+              'your career','career','worked before','companies you worked',
+              'previous company','previous role','past role','worked at'], cmd: 'experience' },
+
+    // Projects
+    { keys: ['your projects','show projects','what have you built','what did you build',
+              'your work','portfolio','built what','what projects','show me what',
+              'what apps','your apps','apps you built','apps you made',
+              'what websites','websites you built','tradepass','statis','gmi texas',
+              'what have you made','what did you make'], cmd: 'projects' },
+
+    // Contact
+    { keys: ['contact you','contact info','how to reach','reach you','get in touch',
+              'your email','email address','phone number','phone','your number',
+              'how do i contact','how can i reach','connect with you','dm you',
+              'message you','your linkedin','your github','social media',
+              'how to connect','how can i connect'], cmd: 'contact' },
+
+    // Hire
+    { keys: ['hire you','hiring','available for work','looking for job','open to work',
+              'are you available','are you open','available to hire','want to hire',
+              'job opportunity','opportunity for you','job offer','offer you',
+              'recruit you','recruiting'], cmd: 'hire' },
+
+    // Help
+    { keys: ['what can i type','what commands','list commands','show commands',
+              'what to type','commands available','available commands',
+              'what do i do','how to use','how does this work','guide me'], cmd: 'help' },
+  ];
+
+  function resolveNLP(input) {
+    for (const { keys, cmd } of NLP) {
+      if (keys.some(k => input.includes(k))) return cmd;
+    }
+    return null;
+  }
+
+  termInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const cmd = termInput.value.trim().toLowerCase();
+      termInput.value = '';
+      if (!cmd) return;
+      cmdHistory.unshift(cmd); histIdx = -1;
+      print([`<span class="tc-ok">sagar@portfolio:~$</span> <span class="tc-cmd">${cmd}</span>`]);
+      if (CMDS[cmd]) {
+        const out = CMDS[cmd]();
+        if (out) { print(out); print(['']); }
+      } else {
+        // Try natural language matching
+        const resolved = resolveNLP(cmd);
+        if (resolved && CMDS[resolved]) {
+          const out = CMDS[resolved]();
+          if (out) { print(out); print(['']); }
+        } else {
+          print([
+            `<span class="tc-err">Hmm, I didn't get that: "<em>${cmd}</em>"</span>`,
+            `<span class="tc-dim">Try: <span class="tc-cmd">whoami</span> · <span class="tc-cmd">skills</span> · <span class="tc-cmd">projects</span> · <span class="tc-cmd">contact</span> · <span class="tc-cmd">help</span></span>`,
+            '',
+          ]);
+        }
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIdx < cmdHistory.length - 1) termInput.value = cmdHistory[++histIdx];
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx > 0) termInput.value = cmdHistory[--histIdx];
+      else { histIdx = -1; termInput.value = ''; }
+    }
+  });
+
+
+  openBtn.addEventListener('click', openTerm);
+  closeBtn.addEventListener('click', closeTerm);
+  backdrop.addEventListener('click', closeTerm);
+
+  // Fix: clicking anywhere inside terminal refocuses input
+  overlay.addEventListener('click', e => {
+    if (e.target !== closeBtn && !e.target.closest('a')) {
+      termInput.focus();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === '`') {
+      overlay.classList.contains('open') ? closeTerm() : openTerm();
+    }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeTerm();
+  });
+})();
+

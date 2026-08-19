@@ -15,9 +15,26 @@
 </head>
 <body>
 
+<div id="progress-bar"></div>
+
 <canvas id="canvas-particles"></canvas>
 <div id="cur"></div>
 <div id="cur-ring"></div>
+
+<!-- Terminal backdrop + overlay -->
+<div id="terminal-backdrop"></div>
+<div id="terminal-overlay">
+  <div class="term-header">
+    <div class="term-dots"><span class="term-dot td1"></span><span class="term-dot td2"></span><span class="term-dot td3"></span></div>
+    <span class="term-title">sagar@portfolio — bash</span>
+    <button id="term-close" aria-label="Close terminal">✕</button>
+  </div>
+  <div class="term-body" id="term-body"></div>
+  <div class="term-input-row">
+    <span class="term-prompt">sagar@portfolio:~$</span>
+    <input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input" />
+  </div>
+</div>
 
 <div id="scroll-mouse">
   <div class="smouse-track">
@@ -49,6 +66,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="tel:+917205222672" style="text-decoration:none;color:inherit;"><div class="nav-status"><div class="nav-status-dot"></div>Available for hire</div></a>
+  <button id="terminal-btn" aria-label="Open terminal">&gt;_</button>
   <button id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -275,7 +293,7 @@
 
 <footer>
   <div class="footer-l">Sagar Samantaray <span>·</span> <span id="footer-year"></span><script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script></div>
-  <div class="footer-r">Built with passion & caffeine ☕</div>
+  <div class="footer-r">© <span id="footer-year2"></span><script>document.getElementById('footer-year2').textContent=new Date().getFullYear();</script> All rights reserved.</div>
 </footer>
 
 </div>
