@@ -336,7 +336,6 @@ function copyEmail() {
       d.innerHTML = l;
       termBody.appendChild(d);
     });
-    termBody.appendChild(termInputRow);
     termBody.scrollTop = termBody.scrollHeight;
   }
 
@@ -346,14 +345,12 @@ function copyEmail() {
     if (!html || !html.trim()) {
       d.innerHTML = html || '';
       termBody.appendChild(d);
-      termBody.appendChild(termInputRow);
       termBody.scrollTop = termBody.scrollHeight;
       if (done) done();
       return;
     }
     d.innerHTML = html;
     termBody.appendChild(d);
-    termBody.appendChild(termInputRow);
 
     const walker = document.createTreeWalker(d, NodeFilter.SHOW_TEXT);
     const textNodes = [];
