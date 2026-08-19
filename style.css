@@ -1574,11 +1574,64 @@ footer {
     }
 
     .nav-status {
-        display: none
+        display: flex;
+        font-size: .58rem;
     }
 
     #hamburger {
         display: flex
+    }
+
+    #terminal-btn {
+        display: none;
+    }
+
+    #terminal-fab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 24px;
+        right: 20px;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: #0b0b17;
+        border: 1px solid rgba(0,229,255,.35);
+        color: var(--cyan);
+        font-family: 'Fira Code', monospace;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        z-index: 9000;
+        cursor: pointer;
+        box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 18px rgba(0,229,255,.2);
+        transition: box-shadow .2s, border-color .2s;
+    }
+
+    #terminal-fab:active {
+        box-shadow: 0 0 28px rgba(0,229,255,.45);
+        border-color: var(--cyan);
+    }
+
+    #terminal-overlay {
+        width: 96vw;
+        height: 88vh;
+        top: 50%;
+    }
+
+    .term-body {
+        font-size: 11.5px;
+        padding: 12px 14px 6px;
+    }
+
+    .term-input-row {
+        padding: 8px 14px 10px;
+    }
+
+    .term-prompt,
+    #term-input {
+        font-size: 11.5px;
     }
 
     nav {
@@ -1733,6 +1786,11 @@ footer {
     border-color: var(--cyan);
     box-shadow: 0 0 12px rgba(0,229,255,.25);
     color: var(--lime);
+}
+
+/* FAB hidden on desktop */
+#terminal-fab {
+    display: none;
 }
 
 /* ══════════════════════════════════════

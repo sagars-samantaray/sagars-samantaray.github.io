@@ -440,6 +440,8 @@ function copyEmail() {
 
 
   openBtn.addEventListener('click', openTerm);
+  const fab = document.getElementById('terminal-fab');
+  if (fab) fab.addEventListener('click', openTerm);
   closeBtn.addEventListener('click', closeTerm);
   backdrop.addEventListener('click', closeTerm);
 
