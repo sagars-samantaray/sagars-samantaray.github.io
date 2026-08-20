@@ -585,9 +585,14 @@ nav {
 #about {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    padding: 60px 60px
+    column-gap: 80px;
+    row-gap: 16px;
+    align-items: start;
+    padding: 60px 60px;
+}
+
+.about-header {
+    grid-column: 1 / -1;
 }
 
 .sec-num {
@@ -596,22 +601,62 @@ nav {
     color: transparent;
     -webkit-text-stroke: 1px var(--border);
     line-height: 1;
-    margin-bottom: -14px
+    margin-bottom: -14px;
 }
 
-.sec-h {
+.sec-h-top {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: clamp(1.8rem, 3.2vw, 3rem);
-    line-height: 1.05;
+    font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+    line-height: 1.15;
     color: #fff;
-    margin-bottom: 22px
+    white-space: nowrap;
+    display: block;
+    margin: 0;
 }
 
-.sec-h em {
+.sec-h-bot {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+    line-height: 1.15;
+    color: #fff;
+    white-space: nowrap;
+    display: block;
+    margin: 0 0 22px 0;
+}
+
+.sec-h-top em,
+.sec-h-bot em {
     font-style: normal;
     color: transparent;
-    -webkit-text-stroke: 1px var(--cyan)
+    -webkit-text-stroke: 1px var(--cyan);
+}
+
+.word-cycle-wrap {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+#skill-word {
+    display: inline-block;
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--cyan);
+    white-space: nowrap;
+}
+
+@keyframes wordSlideOut {
+    from { transform: translateY(0);     opacity: 1; }
+    to   { transform: translateY(-110%); opacity: 0; }
+}
+
+@keyframes wordSlideIn {
+    from { transform: translateY(110%);  opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
 }
 
 .sec-tag {
@@ -1493,9 +1538,10 @@ footer {
         font-size: 3.5rem
     }
 
-    .sec-h {
-        font-size: clamp(1.7rem, 8vw, 1.5rem);
-        line-height: 1.1
+    .sec-h-top,
+    .sec-h-bot {
+        font-size: clamp(1.6rem, 7.5vw, 2.4rem);
+        line-height: 1.15;
     }
 
     .about-p {
@@ -1559,6 +1605,13 @@ footer {
         flex-direction: column;
         gap: 6px;
         text-align: center
+    }
+}
+
+@media(max-width:900px) {
+    #about {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 }
 
@@ -1693,8 +1746,11 @@ footer {
 
     #about {
         padding: 0px 16px;
-        grid-template-columns: 1fr;
         padding-bottom: 40px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
     }
 
     .resume-grid {

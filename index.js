@@ -582,3 +582,23 @@ function copyEmail() {
     label.textContent = Math.round(zoom * 100) + '%';
   }
 })();
+
+/* ── Skill Word Cycler ─────────────────────────────────────── */
+(function() {
+  const words = ['web', 'backend', 'frontend', 'fullstack', 'mobile', 'cloud'];
+  let idx = 0;
+  const el = document.getElementById('skill-word');
+  if (!el) return;
+
+  function cycle() {
+    el.style.animation = 'wordSlideOut 0.38s cubic-bezier(.4,0,.6,1) forwards';
+    setTimeout(() => {
+      idx = (idx + 1) % words.length;
+      el.textContent = words[idx];
+      el.style.animation = 'wordSlideIn 0.38s cubic-bezier(.4,0,.6,1) forwards';
+    }, 380);
+  }
+
+  setInterval(cycle, 2600);
+})();
+
