@@ -421,6 +421,59 @@
 
 <div class="div"></div>
 
+<section id="projects">
+  <div class="rv">
+    <span class="sec-tag">Building</span>
+    <h2 class="sec-h">Personal<br/><em>Projects</em></h2>
+  </div>
+  <div class="resume-grid" style="grid-template-columns: 1fr;">
+    <div class="rv d1">
+      <div class="resume-item">
+        <div class="dot" style="background: var(--gold); box-shadow: 0 0 10px var(--gold);"></div>
+        <div class="resume-year">React Native • Expo • Google Gemini AI • SQLite • Zustand</div>
+        <div class="resume-item-title" style="color: #fff;">AI Fit Tracker</div>
+        <div class="resume-item-desc">
+          <div style="margin-bottom: 8px;"><strong>Key Features:</strong></div>
+          <ul style="margin-left: 18px; margin-bottom: 12px; color: var(--dim);">
+            <li style="margin-bottom: 4px;">AI Meal Scanner estimates macros (calories, protein, carbs) from food photos using Gemini Vision.</li>
+            <li style="margin-bottom: 4px;">Offline-first local tracking for instant data access without network dependency.</li>
+            <li>Interactive workout history tracking and visual progress charts.</li>
+          </ul>
+          <div style="margin-bottom: 8px; color: var(--text);"><strong>System Architecture & Design:</strong></div>
+          <ul style="margin-left: 18px; color: var(--dim);">
+            <li style="margin-bottom: 4px;"><strong>Client & State Layer:</strong> Cross-platform Expo/React Native frontend with Zustand managing global state, decoupling UI components from data logic.</li>
+            <li style="margin-bottom: 4px;"><strong>Hardware & Inference Flow:</strong> Native Camera bridges capture food images, which are streamed to the Google Gemini Vision API for remote machine learning inference (macro calculation).</li>
+            <li><strong>Persistence Layer:</strong> Offline-first architecture using a local SQLite database, allowing the app to operate independently of a continuous internet connection with instantaneous reads/writes.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="resume-item" style="margin-top: 40px;">
+        <div class="dot" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></div>
+        <div class="resume-year">React Native • Expo AV • Expo Speech • Groq AI API</div>
+        <div class="resume-item-title" style="color: #fff;">Prep Buddy (AI Interviewer)</div>
+        <div class="resume-item-sub">Mobile Application</div>
+        <div class="resume-item-desc">
+          <div style="margin-bottom: 8px;"><strong>Key Features:</strong></div>
+          <ul style="margin-left: 18px; margin-bottom: 12px; color: var(--dim);">
+            <li style="margin-bottom: 4px;">Conducts dynamic, voice-based mock technical and HR interviews.</li>
+            <li style="margin-bottom: 4px;">Evaluates user answers in real-time, providing immediate feedback and corrections.</li>
+            <li>Dedicated English fluency practice module using advanced speech recognition.</li>
+          </ul>
+          <div style="margin-bottom: 8px; color: var(--text);"><strong>System Architecture & Design:</strong></div>
+          <ul style="margin-left: 18px; color: var(--dim);">
+            <li style="margin-bottom: 4px;"><strong>Audio I/O Pipeline:</strong> Expo AV captures raw user voice input while the Expo Speech engine synthesizes dynamic text-to-speech outputs for a conversational loop.</li>
+            <li style="margin-bottom: 4px;"><strong>AI Processing Engine:</strong> Integrates the Groq API (ultra-fast LPU inference) to process context-injected prompts tailored to the user's resume, ensuring near-zero latency generation.</li>
+            <li><strong>Data Flow:</strong> User Speech → Audio Transcription → Groq LLM Evaluation → JSON Parsing → Real-time State Update → TTS Output.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
 <section id="contact">
   <p class="contact-pre rv">Ready to build something great?</p>
   <h2 class="contact-h rv d1">

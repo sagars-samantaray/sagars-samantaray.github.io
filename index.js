@@ -280,6 +280,14 @@ function copyEmail() {
       '',
       '<span class="tc-gold">GMI TEXAS</span>  <span class="tc-dim">— Construction Management</span>',
       '<span class="tc-out">React.js · Node.js · React Native · Canvas API · WebSocket</span>',
+      '',
+      '<span class="tc-cmd">AI Fit Tracker</span>  <span class="tc-dim">— Personal Project</span>',
+      '<span class="tc-out">React Native · Expo · SQLite · Google Gemini AI · Zustand</span>',
+      '<span class="tc-dim">↳ Features an AI Meal Scanner that estimates calories & macros from photos. Offline-first local database.</span>',
+      '',
+      '<span class="tc-cyan">Prep Buddy</span>  <span class="tc-dim">— Personal Project</span>',
+      '<span class="tc-out">React Native · Expo AV · Expo Speech · Groq AI API</span>',
+      '<span class="tc-dim">↳ A voice-based AI interview assistant with mock technical/HR rounds and English fluency practice.</span>'
     ],
     contact: () => [
       '<span class="tc-ok">Contact:</span>',
