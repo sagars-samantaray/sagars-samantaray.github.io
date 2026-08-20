@@ -604,6 +604,10 @@ nav {
     margin-bottom: -14px;
 }
 
+.crafting-txt {
+    display: inline-block;
+}
+
 .sec-h-top {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
@@ -637,8 +641,9 @@ nav {
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
-    line-height: 1.1;
+    line-height: 1.15;
     white-space: nowrap;
+    max-width: 100%;
 }
 
 #skill-word {
@@ -1617,7 +1622,34 @@ footer {
 
 @media(max-width:768px) {
     .stats {
-        gap: 11px
+        gap: 11px;
+    }
+
+    .crafting-txt {
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .sec-h-top {
+        white-space: normal;
+    }
+
+    .word-cycle-wrap {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .sec-h-top,
+    .sec-h-bot {
+        font-size: clamp(1.6rem, 7.2vw, 2.4rem);
+        line-height: 1.2;
+    }
+
+    .sec-h-bot {
+        white-space: normal;
     }
 }
 

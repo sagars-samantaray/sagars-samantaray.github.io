@@ -585,7 +585,7 @@ function copyEmail() {
 
 /* ── Skill Word Cycler ─────────────────────────────────────── */
 (function() {
-  const words = ['web', 'backend', 'frontend', 'fullstack', 'mobile', 'cloud'];
+  const words = ['web', 'backend', 'frontend', 'full stack', 'mobile apps', 'cloud'];
   let idx = 0;
   const el = document.getElementById('skill-word');
   if (!el) return;
