@@ -186,6 +186,34 @@
   </div>
 </div>
 
+<!-- Resume Viewer Modal -->
+<div id="resume-modal" class="resume-modal-backdrop" onclick="closeResume(event)">
+  <div class="resume-modal-box">
+    <div class="resume-modal-toolbar">
+      <span class="resume-modal-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        sagar_samantaray_resume.pdf
+      </span>
+      <div class="resume-modal-controls">
+        <button class="rv-btn" onclick="zoomOut()" title="Zoom Out">−</button>
+        <span id="zoom-label" class="zoom-label">100%</span>
+        <button class="rv-btn" onclick="zoomIn()" title="Zoom In">+</button>
+        <a href="https://drive.google.com/uc?export=download&id=1TMoIxOPAEXFIfVhJ-7Nk8hUGhQi1793G" target="_blank" class="rv-btn rv-btn-dl" title="Download">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+        <button class="rv-btn rv-btn-close" onclick="closeResume()" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="resume-modal-frame-wrap" id="resume-frame-wrap">
+      <iframe id="resume-iframe"
+        src="https://drive.google.com/file/d/1TMoIxOPAEXFIfVhJ-7Nk8hUGhQi1793G/preview"
+        allow="autoplay"
+        frameborder="0">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 <!-- Terminal FAB (mobile only) -->
 <button id="terminal-fab" aria-label="Open terminal">&gt;_</button>
 
@@ -410,12 +438,17 @@
         <div class="resume-item-title">English · Odia · Hindi</div>
         <div class="resume-item-sub">Fluent across all three</div>
         <div class="resume-item-desc">Comfortable working in English-first international teams and local environments alike.</div>
-      </div>
-      <a href="https://drive.google.com/file/d/1TMoIxOPAEXFIfVhJ-7Nk8hUGhQi1793G" target="_blank" class="resume-download mag rv d3">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Download Resume</span>
-      </a>
     </div>
+  </div>
+  <div class="resume-btns rv d3" style="padding: 0 60px 40px;">
+    <button onclick="openResume()" class="resume-download mag">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <span>View Resume</span>
+    </button>
+    <a href="https://drive.google.com/uc?export=download&id=1TMoIxOPAEXFIfVhJ-7Nk8hUGhQi1793G" target="_blank" class="resume-download mag" style="text-decoration:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Download</span>
+    </a>
   </div>
 </section>
 

@@ -543,6 +543,42 @@ function copyEmail() {
       overlay.classList.contains('open') ? closeTerm() : openTerm();
     }
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeTerm();
+    if (e.key === 'Escape') closeResume();
   });
 })();
 
+/* ── Resume Viewer ─────────────────────────────────────────── */
+(function() {
+  const modal   = document.getElementById('resume-modal');
+  const iframe  = document.getElementById('resume-iframe');
+  const label   = document.getElementById('zoom-label');
+  let zoom = 1;
+
+  window.openResume = function() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeResume = function(e) {
+    if (e && e.target !== modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.zoomIn = function() {
+    zoom = Math.min(zoom + 0.15, 2);
+    applyZoom();
+  };
+
+  window.zoomOut = function() {
+    zoom = Math.max(zoom - 0.15, 0.5);
+    applyZoom();
+  };
+
+  function applyZoom() {
+    iframe.style.transform = `scale(${zoom})`;
+    iframe.style.transformOrigin = 'top center';
+    iframe.style.height = (100 / zoom) + '%';
+    label.textContent = Math.round(zoom * 100) + '%';
+  }
+})();
