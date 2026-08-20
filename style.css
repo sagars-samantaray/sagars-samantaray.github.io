@@ -7,6 +7,7 @@
     box-sizing: border-box;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -1609,11 +1610,12 @@ footer {
         border: 1px solid rgba(0,229,255,.35);
         color: var(--cyan);
         font-family: 'Fira Code', monospace;
-        font-size: 13px;
-        font-weight: 500;
-        letter-spacing: 1px;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0;
         z-index: 9000;
         cursor: pointer;
+        animation: terminal-pulse-fab 2s infinite;
         box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 18px rgba(0,229,255,.2);
         transition: box-shadow .2s, border-color .2s;
     }
@@ -1621,6 +1623,13 @@ footer {
     #terminal-fab:active {
         box-shadow: 0 0 28px rgba(0,229,255,.45);
         border-color: var(--cyan);
+        animation: none;
+    }
+
+    @keyframes terminal-pulse-fab {
+        0% { box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 0 0 rgba(0,229,255,.7); }
+        70% { box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 0 15px rgba(0,229,255,0); }
+        100% { box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 0 0 rgba(0,229,255,0); }
     }
 
     #terminal-overlay {
@@ -1791,23 +1800,35 @@ footer {
    TERMINAL BUTTON (NAV)
 ══════════════════════════════════════ */
 #terminal-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--cyan);
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid var(--cyan);
+    color: #fff;
     font-family: 'Fira Code', monospace;
     font-size: 11px;
-    padding: 5px 11px;
-    border-radius: 4px;
+    padding: 6px 14px;
+    border-radius: 6px;
     cursor: none;
     letter-spacing: 1px;
-    transition: background .2s, border-color .2s, box-shadow .2s, color .2s;
+    transition: background .2s, border-color .2s, box-shadow .2s, color .2s, transform .2s;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: terminal-pulse-btn 2.5s infinite;
 }
 #terminal-btn:hover {
-    background: rgba(0,229,255,.08);
+    background: rgba(0,229,255,.15);
     border-color: var(--cyan);
-    box-shadow: 0 0 12px rgba(0,229,255,.25);
-    color: var(--lime);
+    box-shadow: 0 0 18px rgba(0,229,255,.3);
+    color: #fff;
+    transform: translateY(-1px);
+    animation: none;
+}
+
+@keyframes terminal-pulse-btn {
+    0% { box-shadow: 0 0 0 0 rgba(0,229,255,.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0,229,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); }
 }
 
 /* FAB hidden on desktop */
