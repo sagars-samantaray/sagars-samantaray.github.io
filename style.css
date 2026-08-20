@@ -1061,12 +1061,19 @@ nav {
     line-height: 1.8
 }
 
+.resume-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 0 60px 40px;
+}
+
 .resume-download {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 40px;
-    padding: 13px 32px;
+    margin-top: 0;
+    padding: 13px 28px;
     border: 1px solid var(--cyan);
     color: var(--cyan);
     font-family: 'Fira Code', monospace;
@@ -1339,7 +1346,8 @@ footer {
         font-size: clamp(2rem, 9vw, 3rem)
     }
 
-    #resume {
+    #resume,
+    #projects {
         padding: 14px 20px
     }
 
@@ -1456,7 +1464,8 @@ footer {
         font-size: clamp(2rem, 9vw, 3rem)
     }
 
-    #resume {
+    #resume,
+    #projects {
         padding: 14px 20px
     }
 
@@ -1583,7 +1592,8 @@ footer {
         font-size: clamp(2rem, 9vw, 3rem)
     }
 
-    #resume {
+    #resume,
+    #projects {
         padding: 14px 20px
     }
 
@@ -1616,13 +1626,21 @@ footer {
 @media(max-width:900px) {
     #about {
         grid-template-columns: 1fr;
-        gap: 40px;
+        row-gap: 0;
+        column-gap: 0;
+    }
+    .resume-btns {
+        padding: 10px 20px 30px;
     }
 }
 
 @media(max-width:768px) {
     .stats {
         gap: 11px;
+    }
+
+    #about {
+        row-gap: 0;
     }
 
     .crafting-txt {
@@ -1632,6 +1650,7 @@ footer {
 
     .sec-h-top {
         white-space: normal;
+        margin-bottom: 0;
     }
 
     .word-cycle-wrap {
@@ -1650,6 +1669,33 @@ footer {
 
     .sec-h-bot {
         white-space: normal;
+        margin-top: 2px;
+        margin-bottom: 20px;
+    }
+
+    .code-card {
+        margin-top: 36px;
+    }
+
+    .resume-btns {
+        padding: 16px 0 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .resume-btns .resume-download {
+        margin-top: 0;
+        padding: 12px 8px;
+        font-size: .68rem;
+        letter-spacing: .06em;
+        gap: 6px;
+        flex: 1;
+        justify-content: center;
+        white-space: nowrap;
+        min-width: 0;
     }
 }
 
@@ -1657,8 +1703,21 @@ footer {
     #about {
         padding: 0px 36px;
         grid-template-columns: 1fr;
-        gap: 35px;
+        row-gap: 0;
+        column-gap: 0;
         padding-bottom: 50px;
+    }
+
+    .resume-btns {
+        padding: 16px 0 10px;
+        gap: 8px;
+    }
+
+    .resume-btns .resume-download {
+        padding: 11px 6px;
+        font-size: .64rem;
+        letter-spacing: .04em;
+        gap: 5px;
     }
 }
 
@@ -1802,7 +1861,8 @@ footer {
         padding: 0 16px
     }
 
-    #resume {
+    #resume,
+    #projects {
         padding: 10px 16px
     }
 
@@ -1861,7 +1921,8 @@ footer {
         padding: 0 16px
     }
 
-    #resume {
+    #resume,
+    #projects {
         padding: 10px 16px
     }
 
