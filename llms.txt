@@ -1,0 +1,18 @@
+# Sagar Samantaray
+
+> MERN Stack Developer with 2.5+ years of experience building full-stack web applications and cross-platform mobile apps (React Native), shipped to the App Store and Play Store.
+
+## Key Facts
+- Role: MERN Stack Developer (MongoDB, Express, React, Node.js)
+- Also skilled in: React Native, JavaScript, TypeScript, REST APIs
+- Experience: 2.5+ years
+- Current company: NetSquare
+- Education: NIIS Institute of Business Administration
+- Location: Bhubaneswar, Odisha, India
+- Open to: full-stack and React Native development opportunities
+
+## Key Pages
+- Portfolio: https://sagars-samantaray.github.io/
+- GitHub: https://github.com/sagars-samantaray
+- LinkedIn: https://linkedin.com/in/sagar-samantaray
+- Twitter/X: https://twitter.com/sagar________
